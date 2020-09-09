@@ -17,7 +17,7 @@ class TempHumApiFetcher():
         self.clientId = clientId
         self.clientSecret = clientSecret
 
-    def fetchData(self, measId: str, startDt: dt.datetime, endDt: dt.datetime) -> List[Tuple[dt.datetime, float]]:
+    def fetchData(self, measId: str, startDt: dt.datetime, endDt: dt.datetime) -> List[Tuple[float, float]]:
         """fetches data from temperature humidity archive api
 
         Args:
@@ -43,13 +43,14 @@ class TempHumApiFetcher():
             'Authorization': 'Bearer ' + tokens['access_token']}
         respSegs = (requests.get(
             apiUrl, headers=api_call_headers, verify=False)).text[1:-1].split(',')
-        scadaData: List[Tuple[dt.datetime, float]] = []
+        apiData: List[Tuple[float, float]] = []
         try:
             for samplInd in range(0, int(len(respSegs)/2)):
-                ts = convertEpochMsToDt(float(respSegs[2*samplInd]))
+                # ts = convertEpochMsToDt(float(respSegs[2*samplInd]))
+                ts = float(respSegs[2*samplInd])
                 val = float(respSegs[2*samplInd+1])
-                scadaData.append((ts, val))
-            return scadaData
+                apiData.append((ts, val))
+            return apiData
         except Exception as inst:
             print(inst)
             return[]
