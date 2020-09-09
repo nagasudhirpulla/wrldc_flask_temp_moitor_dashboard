@@ -8,3 +8,4 @@ class IAppConfig(TypedDict):
     apiBaseUrl: str
     clientId: str
     clientSecret: str
+    mode: str

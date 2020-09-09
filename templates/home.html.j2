@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WRLDC Temperature Humidity monitoring</title>
+</head>
+
+<body>
+    <div>
+        <label for="daysOffsetInp">Days Offset - </label>
+        <input type="number" id="daysOffsetInp" value="2" />
+        <button id="refreshBtn">Refresh</button>
+        <div id='temperDiv'></div>
+        <br />
+        <div id='humidDiv'></div>
+    </div>
+    <script src="{{ url_for('static', filename='app/node_modules/plotly.js-dist/plotly.js') }}"></script>
+    <script src="{{ url_for('static', filename='app/dist/main.js') }}"></script>
+    <style>
+        #temperDiv,
+        #humidDiv {
+            width: 100%;
+        }
+    </style>
+</body>
+
+</html>

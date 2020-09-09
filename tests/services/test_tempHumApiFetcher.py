@@ -17,8 +17,8 @@ class TestHumTempApiFetcher(unittest.TestCase):
 
         tokenUrl: str = self.appConfig['tokenUrl']
         apiBaseUrl: str = self.appConfig['apiBaseUrl']
-        clientId = self.appConfig['clientId']
-        clientSecret = self.appConfig['clientSecret']
+        clientId: str = self.appConfig['clientId']
+        clientSecret: str = self.appConfig['clientSecret']
 
         tempHumFetcher = TempHumApiFetcher(
             tokenUrl, apiBaseUrl, clientId, clientSecret)
